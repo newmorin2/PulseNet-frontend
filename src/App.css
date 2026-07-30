@@ -4,10 +4,27 @@
   color: #111827;
 }
 
+.navbar {
+  width: min(960px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 18px 0 0;
+  text-align: right;
+}
+
+.navbar a {
+  color: #111827;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  color: #2563eb;
+}
+
 .hero-section {
   width: min(960px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 36px 0 12px;
+  padding: 24px 0 12px;
   text-align: center;
 }
 
@@ -135,6 +152,7 @@ textarea:focus {
 }
 
 @media (max-width: 480px) {
+  .navbar,
   .hero-section,
   .forms-section {
     width: min(100% - 24px, 960px);

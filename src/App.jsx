@@ -12,6 +12,10 @@ const departments = [
 function App() {
   return (
     <main className="app-shell">
+      <nav className="navbar">
+        <a href="#appointment">Appointment</a>
+      </nav>
+
       <section className="hero-section" aria-labelledby="hero-title">
         <p className="eyebrow">PulseNet Hospital</p>
         <h1 id="hero-title">Patient Appointment System</h1>
