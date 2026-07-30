@@ -32,6 +32,11 @@ function Home() {
     { name: "Alex Road", role: "Care Coordinator" }
   ];
 
+  const medications = [
+    { name: "Vitamin D", time: "Morning" },
+    { name: "Blood Pressure Tablet", time: "Evening" }
+  ];
+
   return (
     <div className="app-shell">
       <Navbar />
@@ -112,16 +117,33 @@ function Home() {
 
         <section className="section">
           <div className="section-header">
-            <h3 className="section-title">Care team</h3>
+            <h3 className="section-title">Today at a glance</h3>
           </div>
 
-          <div className="care-team-list">
-            {careTeam.map((person) => (
-              <div key={person.name} className="card care-team-card">
-                <p className="care-team-name">{person.name}</p>
-                <p className="care-team-role">{person.role}</p>
+          <div className="summary-grid">
+            <div className="card summary-card">
+              <p className="summary-title">Medication</p>
+              <ul className="summary-list">
+                {medications.map((item) => (
+                  <li key={item.name}>
+                    <span>{item.name}</span>
+                    <strong>{item.time}</strong>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="card summary-card">
+              <p className="summary-title">Care team</p>
+              <div className="care-team-list">
+                {careTeam.map((person) => (
+                  <div key={person.name} className="care-team-card">
+                    <p className="care-team-name">{person.name}</p>
+                    <p className="care-team-role">{person.role}</p>
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
         </section>
       </main>

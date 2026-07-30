@@ -307,15 +307,55 @@ button {
   color: #b91c1c;
 }
 
+/* Summary cards */
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 16px;
+}
+
+.summary-card {
+  padding: 18px;
+}
+
+.summary-title {
+  margin: 0 0 12px;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.summary-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.summary-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.summary-list li:last-child {
+  border-bottom: none;
+}
+
 /* Care team */
 .care-team-list {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
 }
 
 .care-team-card {
-  padding: 16px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #f8fbff;
 }
 
 .care-team-name {
@@ -359,7 +399,8 @@ button {
   }
 
   .quick-actions,
-  .care-team-list {
+  .care-team-list,
+  .summary-grid {
     grid-template-columns: 1fr;
   }
 
