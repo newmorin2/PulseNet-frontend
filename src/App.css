@@ -1,15 +1,15 @@
 :root {
-  --bg: #f4f7fb;
+  --bg: #f5f7fb;
   --card: #ffffff;
-  --text: #14213d;
-  --muted: #5e6b7a;
-  --primary: #1f6feb;
-  --primary-dark: #1756bd;
+  --text: #1f2a37;
+  --muted: #5f6b7a;
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
   --primary-light: #e8f1ff;
-  --border: #d7e5f8;
+  --border: #cfd8e3;
   --success: #16a34a;
   --danger: #dc2626;
-  --shadow: 0 2px 4px rgba(20, 33, 61, 0.08);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
 }
 
 * {
@@ -18,7 +18,7 @@
 
 body {
   margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Trebuchet MS", "Arial", sans-serif;
   background: var(--bg);
   color: var(--text);
 }
@@ -30,6 +30,7 @@ a {
 
 button {
   font: inherit;
+  font-family: "Trebuchet MS", "Arial", sans-serif;
 }
 
 .app-shell {
@@ -40,9 +41,9 @@ button {
 
 /* Navbar */
 .navbar {
-  background: var(--primary);
-  color: white;
-  padding: 12px 20px;
+  background: #1e4fb7;
+  color: #ffffff;
+  padding: 14px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -56,16 +57,17 @@ button {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: 700;
-  letter-spacing: 0.3px;
-  color: #fff;
+  letter-spacing: 0.1px;
+  color: #ffffff;
+  font-family: "Trebuchet MS", "Arial", sans-serif;
 }
 
 .navbar-brand-badge {
   width: 38px;
   height: 38px;
-  border-radius: 12px;
+  border-radius: 4px;
   background: #fff;
   color: var(--primary);
   display: grid;
@@ -83,28 +85,27 @@ button {
 }
 
 .nav-links a {
-  color: #eaf2ff;
+  color: #f2f7ff;
   font-weight: 500;
 }
 
 .nav-links a:hover {
-  color: #fff;
+  color: #ffffff;
 }
 
 .login-btn {
   border: none;
-  background: #fff;
-  color: var(--primary);
-  padding: 10px 18px;
-  border-radius: 10px;
+  background: #ffffff;
+  color: #1e4fb7;
+  padding: 8px 14px;
+  border-radius: 4px;
   cursor: pointer;
   font-weight: 600;
   transition: 0.2s ease;
 }
 
 .login-btn:hover {
-  background: var(--primary-light);
-  transform: translateY(-1px);
+  background: #f0f5ff;
 }
 
 /* Main layout */
@@ -126,7 +127,7 @@ button {
 .card {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 10px;
+  border-radius: 2px;
   box-shadow: none;
 }
 
@@ -136,8 +137,9 @@ button {
 
 .hero-title {
   margin: 0 0 10px;
-  font-size: 2rem;
+  font-size: 1.7rem;
   line-height: 1.2;
+  font-family: "Trebuchet MS", "Arial", sans-serif;
 }
 
 .hero-subtitle {
@@ -179,7 +181,7 @@ button {
 .reminder-card {
   margin-top: 6px;
   padding: 12px 14px;
-  border-radius: 14px;
+  border-radius: 4px;
   background: var(--primary-light);
   border: 1px solid var(--border);
 }
@@ -207,7 +209,7 @@ button {
 .stat-card {
   background: white;
   border: 1px solid var(--border);
-  border-radius: 16px;
+  border-radius: 4px;
   padding: 18px;
 }
 
@@ -237,7 +239,8 @@ button {
 
 .section-title {
   margin: 0;
-  font-size: 1.35rem;
+  font-size: 1.3rem;
+  font-family: "Trebuchet MS", "Arial", sans-serif;
 }
 
 .section-link {
@@ -254,10 +257,10 @@ button {
 .quick-action-card {
   display: grid;
   gap: 6px;
-  padding: 16px;
+  padding: 14px;
   border: 1px solid var(--border);
-  border-radius: 8px;
-  background: #f9fbff;
+  border-radius: 2px;
+  background: #f8fbff;
   box-shadow: none;
 }
 
@@ -278,7 +281,7 @@ button {
 }
 
 .appointment-card {
-  padding: 18px;
+  padding: 16px;
   display: grid;
   grid-template-columns: 1fr auto;
   gap: 16px;
@@ -374,7 +377,7 @@ button {
 .care-team-card {
   padding: 12px;
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 2px;
   background: #f8fbff;
 }
 
