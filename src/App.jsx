@@ -45,13 +45,20 @@ function App() {
           </div>
         </div>
 
-        <figure className="reference-panel">
-          <img
-            src="/pulsenet-combined.jpg"
-            alt="Combined PulseNet appointment and problem report screens"
-          />
-          <figcaption>Combined layout from the provided screens</figcaption>
-        </figure>
+        <div className="hero-summary" aria-label="PulseNet service highlights">
+          <div>
+            <strong>24/7</strong>
+            <span>Patient support</span>
+          </div>
+          <div>
+            <strong>6</strong>
+            <span>Departments</span>
+          </div>
+          <div>
+            <strong>Fast</strong>
+            <span>Doctor updates</span>
+          </div>
+        </div>
       </section>
 
       <section className="forms-section" aria-label="PulseNet patient forms">
@@ -108,7 +115,7 @@ function App() {
 
         <form className="care-card" id="problem">
           <div className="form-heading">
-            <span className="status-dot green"></span>
+            <span className="status-dot light-blue"></span>
             <div>
               <p>Step 2</p>
               <h2>Highlight Your Problems</h2>
@@ -131,7 +138,7 @@ function App() {
               placeholder="e.g., chest pain, dizziness, previous surgery..."
             ></textarea>
           </label>
-          <button className="button green-button" type="button">
+          <button className="button sky-button" type="button">
             Send to Doctor
           </button>
         </form>
