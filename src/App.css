@@ -225,6 +225,32 @@ button {
   font-weight: 600;
 }
 
+.quick-actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.quick-action-card {
+  display: grid;
+  gap: 6px;
+  padding: 18px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: linear-gradient(135deg, #ffffff 0%, #eef6ff 100%);
+  box-shadow: var(--shadow);
+}
+
+.quick-action-title {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.quick-action-text {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
 /* Appointments */
 .appointment-list {
   display: grid;
@@ -281,6 +307,27 @@ button {
   color: #b91c1c;
 }
 
+/* Care team */
+.care-team-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.care-team-card {
+  padding: 16px;
+}
+
+.care-team-name {
+  margin: 0 0 4px;
+  font-weight: 700;
+}
+
+.care-team-role {
+  margin: 0;
+  color: var(--muted);
+}
+
 /* Placeholder pages */
 .page-card {
   padding: 28px;
@@ -308,6 +355,11 @@ button {
   }
 
   .appointment-card {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-actions,
+  .care-team-list {
     grid-template-columns: 1fr;
   }
 

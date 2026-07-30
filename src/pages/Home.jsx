@@ -26,6 +26,12 @@ function Home() {
     }
   ];
 
+  const careTeam = [
+    { name: "Dr. N. Patel", role: "Primary Care" },
+    { name: "Mina Cole", role: "Nurse" },
+    { name: "Alex Road", role: "Care Coordinator" }
+  ];
+
   return (
     <div className="app-shell">
       <Navbar />
@@ -65,6 +71,23 @@ function Home() {
 
         <section className="section">
           <div className="section-header">
+            <h3 className="section-title">Quick actions</h3>
+          </div>
+
+          <div className="quick-actions">
+            <Link className="quick-action-card" to="/appointments">
+              <span className="quick-action-title">Book visit</span>
+              <span className="quick-action-text">Choose a date for your next checkup</span>
+            </Link>
+            <Link className="quick-action-card" to="/departments">
+              <span className="quick-action-title">View departments</span>
+              <span className="quick-action-text">See the services available to you</span>
+            </Link>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="section-header">
             <h3 className="section-title">Past appointments</h3>
             <Link className="section-link" to="/appointments">
               View all
@@ -82,6 +105,21 @@ function Home() {
                 <span className={`badge ${appointment.statusClass}`}>
                   {appointment.statusClass}
                 </span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="section-header">
+            <h3 className="section-title">Care team</h3>
+          </div>
+
+          <div className="care-team-list">
+            {careTeam.map((person) => (
+              <div key={person.name} className="card care-team-card">
+                <p className="care-team-name">{person.name}</p>
+                <p className="care-team-role">{person.role}</p>
               </div>
             ))}
           </div>
