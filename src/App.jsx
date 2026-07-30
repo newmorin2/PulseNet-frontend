@@ -1,121 +1,147 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
 
+const departments = [
+  'General Medicine',
+  'Cardiology',
+  'Pediatrics',
+  'Orthopedics',
+  'Emergency Care',
+  'Dermatology',
+]
+
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <main className="app-shell">
+      <nav className="topbar" aria-label="Primary navigation">
+        <a className="brand" href="/">
+          <span className="brand-mark">P</span>
+          <span>
+            <strong>PulseNet</strong>
+            <small>Hospital</small>
+          </span>
+        </a>
+        <div className="nav-links">
+          <a href="#appointment">Appointment</a>
+          <a href="#problem">Symptoms</a>
+          <a href="#contact">Contact</a>
         </div>
-        <div>
-          <h1>Get started</h1>
+      </nav>
+
+      <section className="hero-section" aria-labelledby="hero-title">
+        <div className="hero-copy">
+          <p className="eyebrow">Patient care portal</p>
+          <h1 id="hero-title">Book care and share symptoms with PulseNet.</h1>
           <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
+            A simple front desk experience for appointments and patient
+            problem reports, combined into one hospital workflow.
           </p>
+          <div className="hero-actions">
+            <a className="primary-link" href="#appointment">
+              Book Appointment
+            </a>
+            <a className="secondary-link" href="#problem">
+              Highlight Problem
+            </a>
+          </div>
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
+
+        <figure className="reference-panel">
+          <img
+            src="/pulsenet-combined.jpg"
+            alt="Combined PulseNet appointment and problem report screens"
+          />
+          <figcaption>Combined layout from the provided screens</figcaption>
+        </figure>
       </section>
 
-      <div className="ticks"></div>
+      <section className="forms-section" aria-label="PulseNet patient forms">
+        <form className="care-card" id="appointment">
+          <div className="form-heading">
+            <span className="status-dot blue"></span>
+            <div>
+              <p>Step 1</p>
+              <h2>Book an Appointment</h2>
+            </div>
+          </div>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
+          <label>
+            Full Name *
+            <input type="text" name="fullName" placeholder="Enter your full name" />
+          </label>
+          <label>
+            Email *
+            <input type="email" name="email" placeholder="you@example.com" />
+          </label>
+          <label>
+            Phone *
+            <input type="tel" name="phone" placeholder="+254 700 000 000" />
+          </label>
+          <label>
+            Select Department *
+            <select name="department" defaultValue="">
+              <option value="" disabled>
+                -- Choose --
+              </option>
+              {departments.map((department) => (
+                <option key={department} value={department}>
+                  {department}
+                </option>
+              ))}
+            </select>
+          </label>
+          <label>
+            Preferred Date *
+            <input type="date" name="preferredDate" />
+          </label>
+          <label>
+            Additional Notes
+            <textarea
+              name="notes"
+              rows="4"
+              placeholder="Any symptoms or requests..."
+            ></textarea>
+          </label>
+          <button className="button blue-button" type="button">
+            Confirm Appointment
+          </button>
+        </form>
+
+        <form className="care-card" id="problem">
+          <div className="form-heading">
+            <span className="status-dot green"></span>
+            <div>
+              <p>Step 2</p>
+              <h2>Highlight Your Problems</h2>
+            </div>
+          </div>
+
+          <label>
+            Your Name *
+            <input type="text" name="patientName" placeholder="Enter your name" />
+          </label>
+          <label>
+            Email *
+            <input type="email" name="patientEmail" placeholder="you@example.com" />
+          </label>
+          <label>
+            Describe your symptoms or medical history *
+            <textarea
+              name="symptoms"
+              rows="9"
+              placeholder="e.g., chest pain, dizziness, previous surgery..."
+            ></textarea>
+          </label>
+          <button className="button green-button" type="button">
+            Send to Doctor
+          </button>
+        </form>
       </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+      <footer className="footer" id="contact">
+        <strong>PulseNet Hospital</strong>
+        <span>2026. Your health, our priority.</span>
+      </footer>
+    </main>
   )
 }
 
