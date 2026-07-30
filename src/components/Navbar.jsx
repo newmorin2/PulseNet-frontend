@@ -4,8 +4,8 @@ function Navbar() {
   return (
     <header className="navbar">
       <Link to="/" className="navbar-brand">
-        <span className="navbar-brand-badge">M</span>
-        <span>MedCare</span>
+        <span className="navbar-brand-badge">P</span>
+        <span>PulseNet</span>
       </Link>
 
       <ul className="nav-links">

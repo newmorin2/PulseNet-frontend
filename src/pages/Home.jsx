@@ -44,10 +44,10 @@ function Home() {
       <main className="main-content">
         <section className="hero">
           <div className="card hero-card">
-            <p className="hero-subtitle">Patient portal</p>
-            <h1 className="hero-title">Welcome back, Sarah.</h1>
+            <p className="hero-subtitle">Patient page</p>
+            <h1 className="hero-title">Hey Sarah, here is your stuff.</h1>
             <p className="hero-subtitle">
-              You can review your recent visits, check your care team, and get ready for your next appointment from one simple screen.
+              You can see your old visits, your team, and your next thing from one place.
             </p>
           </div>
 
