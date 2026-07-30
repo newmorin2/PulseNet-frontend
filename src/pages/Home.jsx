@@ -57,6 +57,11 @@ function Home() {
             <p className="profile-meta">DOB: 04/12/1988</p>
             <p className="profile-meta">Primary care: Dr. N. Patel</p>
 
+            <div className="reminder-card">
+              <p className="reminder-title">Upcoming reminder</p>
+              <p className="reminder-text">Lab results review on Feb 14 at 10:30 AM</p>
+            </div>
+
             <div className="stats-grid">
               <div className="stat-card">
                 <p className="stat-label">Visits</p>

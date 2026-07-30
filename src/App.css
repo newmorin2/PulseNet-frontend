@@ -177,6 +177,27 @@ button {
   line-height: 1.5;
 }
 
+.reminder-card {
+  margin-top: 6px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: var(--primary-light);
+  border: 1px solid var(--border);
+}
+
+.reminder-title {
+  margin: 0 0 4px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+.reminder-text {
+  margin: 0;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
 .stats-grid {
   margin-top: 22px;
   display: grid;
