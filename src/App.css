@@ -1,3 +1,173 @@
+.app-shell {
+  min-height: 100svh;
+  background: #ffffff;
+  color: #111827;
+}
+
+.navbar {
+  width: min(960px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 18px 0 0;
+  text-align: right;
+}
+
+.navbar a {
+  color: #111827;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  color: #2563eb;
+}
+
+.hero-section {
+  width: min(960px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 24px 0 12px;
+  text-align: center;
+}
+
+.eyebrow {
+  margin: 0;
+  color: #2563eb;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.hero-section h1 {
+  margin: 8px 0 0;
+  color: #111827;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.forms-section {
+  width: min(960px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 24px 0 40px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.care-card {
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.form-heading {
+  margin-bottom: 18px;
+}
+
+.form-heading p {
+  margin: 0 0 4px;
+  color: #2563eb;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.form-heading h2 {
+  margin: 0;
+  color: #111827;
+  font-size: 1.35rem;
+  line-height: 1.25;
+}
+
+label {
+  display: block;
+  margin-top: 14px;
+  color: #111827;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  margin-top: 7px;
+  padding: 11px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #111827;
+  font: inherit;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #2563eb;
+}
+
+.button {
+  width: 100%;
+  margin-top: 20px;
+  min-height: 45px;
+  border: 0;
+  border-radius: 4px;
+  background: #2563eb;
+  color: #ffffff;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #1d4ed8;
+}
+
+.footer {
+  padding: 22px 16px;
+  border-top: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #111827;
+  text-align: center;
+}
+
+.footer strong,
+.footer span {
+  display: block;
+}
+
+.footer span {
+  margin-top: 4px;
+  color: #4b5563;
+}
+
+@media (max-width: 760px) {
+  .forms-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar,
+  .hero-section,
+  .forms-section {
+    width: min(100% - 24px, 960px);
+  }
+
+  .hero-section {
+    padding-top: 26px;
+  }
+
+  .hero-section h1 {
+    font-size: 1.6rem;
+  }
+
+  .care-card {
+    padding: 18px;
 :root {
   --bg: #f5f7fb;
   --card: #ffffff;
