@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import api from '../services/api'
 import Navbar from '../components/Navbar'
 import DepartmentCard from '../components/DepartmentCard'
 
@@ -7,8 +7,8 @@ const Departments = () => {
   const [departments, setDepartments] = useState([])
 
   useEffect(() => {
-    axios
-      .get('http://127.0.0.1:8000/api/departments/')
+    api
+      .get('/departments/')
       .then((response) => {
         setDepartments(response.data)
       })
