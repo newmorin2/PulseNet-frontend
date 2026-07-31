@@ -6,6 +6,7 @@ Route
 
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Departments from "./pages/Departments";
 import ProtectedRoute from "./components/ProtectedRoute";
 
 
@@ -39,6 +40,15 @@ return (
 
 }
 />
+   <Route
+  path="/departments"
+  element={
+    <ProtectedRoute>
+      <Departments />
+    </ProtectedRoute>
+  }
+  />
+
 
   </Routes>
   </BrowserRouter>
