@@ -1,30 +1,51 @@
-import { Link } from "react-router-dom";
-import Navbar from "../components/Navbar";
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import Navbar from '../components/Navbar'
 
 function Home() {
+  const [savedAppointments, setSavedAppointments] = useState([])
+
+  useEffect(() => {
+    const stored = localStorage.getItem('appointments')
+    if (stored) {
+      setSavedAppointments(JSON.parse(stored))
+    }
+  }, [])
+
   const appointments = [
     {
       id: 1,
-      title: "General Checkup",
-      doctor: "Dr. N. Patel",
-      date: "Jan 18, 2026",
-      statusClass: "completed"
+      title: 'General Checkup',
+      doctor: 'Dr. N. Patel',
+      date: 'Jan 18, 2026',
+      statusClass: 'completed'
     },
     {
       id: 2,
-      title: "Heart Review",
-      doctor: "Dr. L. Kim",
-      date: "Feb 02, 2026",
-      statusClass: "completed"
+      title: 'Heart Review',
+      doctor: 'Dr. L. Kim',
+      date: 'Feb 02, 2026',
+      statusClass: 'completed'
     },
     {
       id: 3,
-      title: "Lab Follow-up",
-      doctor: "Dr. A. Brown",
-      date: "Feb 14, 2026",
-      statusClass: "upcoming"
+      title: 'Lab Follow-up',
+      doctor: 'Dr. A. Brown',
+      date: 'Feb 14, 2026',
+      statusClass: 'upcoming'
     }
-  ];
+  ]
+
+  const allAppointments = [
+    ...savedAppointments.map((appointment) => ({
+      id: appointment.id,
+      title: appointment.title || `${appointment.department} Appointment`,
+      doctor: appointment.doctor || 'Assigned doctor soon',
+      date: appointment.preferredDate || appointment.date || 'TBD',
+      statusClass: appointment.statusClass || 'upcoming'
+    })),
+    ...appointments
+  ]
 
   const careTeam = [
     { name: "Dr. N. Patel", role: "Primary Care" },
@@ -85,7 +106,7 @@ function Home() {
           </div>
 
           <div className="quick-actions">
-            <Link className="quick-action-card" to="/appointments">
+            <Link className="quick-action-card" to="/appointment">
               <span className="quick-action-title">Book visit</span>
               <span className="quick-action-text">Choose a date for your next checkup</span>
             </Link>
@@ -99,13 +120,13 @@ function Home() {
         <section className="section">
           <div className="section-header">
             <h3 className="section-title">Past appointments</h3>
-            <Link className="section-link" to="/appointments">
+            <Link className="section-link" to="/appointment">
               View all
             </Link>
           </div>
 
           <div className="appointment-list">
-            {appointments.map((appointment) => (
+            {allAppointments.map((appointment) => (
               <div key={appointment.id} className="card appointment-card">
                 <div className="appointment-left">
                   <h4 className="appointment-title">{appointment.title}</h4>

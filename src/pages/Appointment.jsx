@@ -1,4 +1,6 @@
-import '../App.css'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import Navbar from '../components/Navbar'
 
 const departments = [
   'General Medicine',
@@ -10,103 +12,162 @@ const departments = [
 ]
 
 function Appointment() {
+  const navigate = useNavigate()
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    phone: '',
+    department: '',
+    preferredDate: '',
+    notes: ''
+  })
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    const existing = JSON.parse(localStorage.getItem('appointments') || '[]')
+    const newAppointment = {
+      id: Date.now(),
+      fullName: formData.fullName,
+      email: formData.email,
+      phone: formData.phone,
+      department: formData.department,
+      preferredDate: formData.preferredDate,
+      notes: formData.notes,
+      title: `${formData.department} Appointment`,
+      doctor: 'Assigned doctor soon',
+      date: formData.preferredDate,
+      statusClass: 'upcoming'
+    }
+
+    localStorage.setItem('appointments', JSON.stringify([newAppointment, ...existing]))
+    alert('Appointment request submitted! You can view it on the Home page.')
+    navigate('/')
+  }
+
   return (
-    <main className="app-shell">
-      <nav className="navbar">
-        <a href="#appointment">Appointment</a>
-      </nav>
+    <div className="app-shell">
+      <Navbar />
+      <main className="main-content">
+        <section className="hero">
+          <div className="card page-card">
+            <p className="hero-subtitle">PulseNet Hospital</p>
+            <h1 className="page-title">Book Your Appointment</h1>
+            <p className="page-text">
+              Schedule a convenient time to visit our specialized doctors and receive quality healthcare.
+            </p>
+          </div>
+        </section>
 
-      <section className="hero-section" aria-labelledby="hero-title">
-        <p className="eyebrow">PulseNet Hospital</p>
-        <h1 id="hero-title">Patient Appointment System</h1>
-      </section>
-
-      <section className="forms-section" aria-label="PulseNet patient forms">
-        <form className="care-card" id="appointment">
-          <div className="form-heading">
-            <div>
-              <p>Step 1</p>
-              <h2>Book an Appointment</h2>
-            </div>
+        <section className="section">
+          <div className="section-header">
+            <h3 className="section-title">Appointment Details</h3>
           </div>
 
-          <label>
-            Full Name *
-            <input type="text" name="fullName" placeholder="Enter your full name" />
-          </label>
-          <label>
-            Email *
-            <input type="email" name="email" placeholder="you@example.com" />
-          </label>
-          <label>
-            Phone *
-            <input type="tel" name="phone" placeholder="+254 700 000 000" />
-          </label>
-          <label>
-            Select Department *
-            <select name="department" defaultValue="">
-              <option value="" disabled>
-                -- Choose --
-              </option>
-              {departments.map((department) => (
-                <option key={department} value={department}>
-                  {department}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label>
-            Preferred Date *
-            <input type="date" name="preferredDate" />
-          </label>
-          <label>
-            Additional Notes
-            <textarea
-              name="notes"
-              rows="4"
-              placeholder="Any symptoms or requests..."
-            ></textarea>
-          </label>
-          <button className="button" type="button">
-            Confirm Appointment
-          </button>
-        </form>
+          <div className="forms-grid">
+            <div className="card form-card">
+              <h4 className="form-title">Personal Information</h4>
+              <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                  <label htmlFor="fullName">Full Name *</label>
+                  <input
+                    id="fullName"
+                    type="text"
+                    name="fullName"
+                    placeholder="Enter your full name"
+                    value={formData.fullName}
+                    onChange={handleChange}
+                    required
+                    className="form-input"
+                  />
+                </div>
 
-        <form className="care-card" id="problem">
-          <div className="form-heading">
-            <div>
-              <p>Step 2</p>
-              <h2>Highlight Your Problems</h2>
+                <div className="form-group">
+                  <label htmlFor="email">Email *</label>
+                  <input
+                    id="email"
+                    type="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="form-input"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="phone">Phone *</label>
+                  <input
+                    id="phone"
+                    type="tel"
+                    name="phone"
+                    placeholder="+254 700 000 000"
+                    value={formData.phone}
+                    onChange={handleChange}
+                    required
+                    className="form-input"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="department">Select Department *</label>
+                  <select
+                    id="department"
+                    name="department"
+                    value={formData.department}
+                    onChange={handleChange}
+                    required
+                    className="form-input"
+                  >
+                    <option value="">-- Choose a department --</option>
+                    {departments.map((dept) => (
+                      <option key={dept} value={dept}>
+                        {dept}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="preferredDate">Preferred Date *</label>
+                  <input
+                    id="preferredDate"
+                    type="date"
+                    name="preferredDate"
+                    value={formData.preferredDate}
+                    onChange={handleChange}
+                    required
+                    className="form-input"
+                  />
+                </div>
+
+                <div className="form-group">
+                  <label htmlFor="notes">Additional Notes</label>
+                  <textarea
+                    id="notes"
+                    name="notes"
+                    placeholder="Any symptoms or special requests..."
+                    rows="4"
+                    value={formData.notes}
+                    onChange={handleChange}
+                    className="form-input"
+                  ></textarea>
+                </div>
+
+                <button type="submit" className="btn-primary">
+                  Confirm Appointment
+                </button>
+              </form>
             </div>
           </div>
-
-          <label>
-            Your Name *
-            <input type="text" name="patientName" placeholder="Enter your name" />
-          </label>
-          <label>
-            Email *
-            <input type="email" name="patientEmail" placeholder="you@example.com" />
-          </label>
-          <label>
-            Describe your symptoms or medical history *
-            <textarea
-              name="symptoms"
-              rows="9"
-              placeholder="e.g., chest pain, dizziness, previous surgery..."
-            ></textarea>
-          </label>
-          <button className="button" type="button">
-            Send to Doctor
-          </button>
-        </form>
-      </section>
-
-      <footer className="footer" id="contact">
-        <strong>PulseNet Hospital</strong>
-        <span>2026. Your health, our priority.</span>
-      </footer>
-    </main>
+        </section>
+      </main>
+    </div>
   )
 }
 
