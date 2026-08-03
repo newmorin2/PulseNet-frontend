@@ -14,17 +14,27 @@ function Home() {
     }
   }, [])
 
+  const userAppointments = user?.email
+    ? savedAppointments.filter((appointment) => appointment.email === user.email)
+    : savedAppointments
+
+  const latestAppointment = userAppointments.length
+    ? userAppointments[0]
+    : null
+
   const displayName =
-    user?.username || user?.email?.split('@')[0] || 'Patient'
+    latestAppointment?.fullName ||
+    user?.username ||
+    user?.email?.split('@')[0] ||
+    'Patient'
   const initials = displayName
     .split(' ')
     .map((part) => part.charAt(0).toUpperCase())
     .slice(0, 2)
     .join('') || 'P'
 
-  const userAppointments = user?.email
-    ? savedAppointments.filter((appointment) => appointment.email === user.email)
-    : savedAppointments
+  const nextVisit = latestAppointment?.preferredDate || latestAppointment?.date || null
+  const nextVisitText = nextVisit ? nextVisit : 'No scheduled visit yet'
 
   const appointments = [
     {
@@ -50,16 +60,15 @@ function Home() {
     }
   ]
 
-  const allAppointments = [
-    ...userAppointments.map((appointment) => ({
-      id: appointment.id,
-      title: appointment.title || `${appointment.department} Appointment`,
-      doctor: appointment.doctor || 'Assigned doctor soon',
-      date: appointment.preferredDate || appointment.date || 'TBD',
-      statusClass: appointment.statusClass || 'upcoming'
-    })),
-    ...appointments
-  ]
+  const allAppointments = userAppointments.length
+    ? userAppointments.map((appointment) => ({
+        id: appointment.id,
+        title: appointment.title || `${appointment.department} Appointment`,
+        doctor: appointment.doctor || 'Assigned doctor soon',
+        date: appointment.preferredDate || appointment.date || 'TBD',
+        statusClass: appointment.statusClass || 'upcoming'
+      }))
+    : appointments
 
   const careTeam = [
     { name: "Dr. N. Patel", role: "Primary Care" },
@@ -93,8 +102,12 @@ function Home() {
             <p className="profile-meta">Signed in with PulseNet</p>
 
             <div className="reminder-card">
-              <p className="reminder-title">Upcoming reminder</p>
-              <p className="reminder-text">Check your next appointment details on the appointments page.</p>
+              <p className="reminder-title">Upcoming appointment</p>
+              <p className="reminder-text">
+                {latestAppointment
+                  ? `${latestAppointment.department || latestAppointment.title} on ${nextVisitText}`
+                  : 'No appointment booked yet. Schedule one to see it here.'}
+              </p>
             </div>
 
             <div className="stats-grid">
@@ -103,12 +116,12 @@ function Home() {
                 <p className="stat-value">{userAppointments.length || '0'}</p>
               </div>
               <div className="stat-card">
-                <p className="stat-label">Quick action</p>
-                <p className="stat-value">Book a visit</p>
+                <p className="stat-label">Next visit</p>
+                <p className="stat-value">{nextVisitText}</p>
               </div>
               <div className="stat-card">
-                <p className="stat-label">Account</p>
-                <p className="stat-value">Patient</p>
+                <p className="stat-label">Status</p>
+                <p className="stat-value">{latestAppointment ? 'Scheduled' : 'Open'}</p>
               </div>
             </div>
           </div>
