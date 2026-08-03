@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Navbar from '../components/Navbar'
+import { useAuth } from '../context/AuthContext'
 
 function Home() {
+  const { user } = useAuth()
   const [savedAppointments, setSavedAppointments] = useState([])
 
   useEffect(() => {
@@ -11,6 +13,18 @@ function Home() {
       setSavedAppointments(JSON.parse(stored))
     }
   }, [])
+
+  const displayName =
+    user?.username || user?.email?.split('@')[0] || 'Patient'
+  const initials = displayName
+    .split(' ')
+    .map((part) => part.charAt(0).toUpperCase())
+    .slice(0, 2)
+    .join('') || 'P'
+
+  const userAppointments = user?.email
+    ? savedAppointments.filter((appointment) => appointment.email === user.email)
+    : savedAppointments
 
   const appointments = [
     {
@@ -37,7 +51,7 @@ function Home() {
   ]
 
   const allAppointments = [
-    ...savedAppointments.map((appointment) => ({
+    ...userAppointments.map((appointment) => ({
       id: appointment.id,
       title: appointment.title || `${appointment.department} Appointment`,
       doctor: appointment.doctor || 'Assigned doctor soon',
@@ -66,35 +80,35 @@ function Home() {
         <section className="hero">
           <div className="card hero-card">
             <p className="hero-subtitle">Patient page</p>
-            <h1 className="hero-title">Hey Sarah, here is your stuff.</h1>
+            <h1 className="hero-title">Hey {displayName}, here is your dashboard.</h1>
             <p className="hero-subtitle">
-              You can see your old visits, your team, and your next thing from one place.
+              You can see your appointments, your care team, and your next steps from one place.
             </p>
           </div>
 
           <div className="card profile-summary">
-            <div className="profile-avatar">SJ</div>
-            <h2 className="profile-name">Sarah Johnson</h2>
-            <p className="profile-meta">DOB: 04/12/1988</p>
-            <p className="profile-meta">Primary care: Dr. N. Patel</p>
+            <div className="profile-avatar">{initials}</div>
+            <h2 className="profile-name">{displayName}</h2>
+            {user?.email && <p className="profile-meta">{user.email}</p>}
+            <p className="profile-meta">Signed in with PulseNet</p>
 
             <div className="reminder-card">
               <p className="reminder-title">Upcoming reminder</p>
-              <p className="reminder-text">Lab results review on Feb 14 at 10:30 AM</p>
+              <p className="reminder-text">Check your next appointment details on the appointments page.</p>
             </div>
 
             <div className="stats-grid">
               <div className="stat-card">
-                <p className="stat-label">Visits</p>
-                <p className="stat-value">12</p>
+                <p className="stat-label">Appointments</p>
+                <p className="stat-value">{userAppointments.length || '0'}</p>
               </div>
               <div className="stat-card">
-                <p className="stat-label">Next visit</p>
-                <p className="stat-value">Feb 14</p>
+                <p className="stat-label">Quick action</p>
+                <p className="stat-value">Book a visit</p>
               </div>
               <div className="stat-card">
-                <p className="stat-label">Status</p>
-                <p className="stat-value">Stable</p>
+                <p className="stat-label">Account</p>
+                <p className="stat-value">Patient</p>
               </div>
             </div>
           </div>

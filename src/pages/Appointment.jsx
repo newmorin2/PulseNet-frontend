@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Navbar from '../components/Navbar'
+import { useAuth } from '../context/AuthContext'
 
 const departments = [
   'General Medicine',
@@ -13,14 +14,25 @@ const departments = [
 
 function Appointment() {
   const navigate = useNavigate()
+  const { user } = useAuth()
   const [formData, setFormData] = useState({
-    fullName: '',
-    email: '',
+    fullName: user?.username || '',
+    email: user?.email || '',
     phone: '',
     department: '',
     preferredDate: '',
     notes: ''
   })
+
+  useEffect(() => {
+    if (user) {
+      setFormData((prev) => ({
+        ...prev,
+        fullName: prev.fullName || user.username || '',
+        email: prev.email || user.email || ''
+      }))
+    }
+  }, [user])
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })

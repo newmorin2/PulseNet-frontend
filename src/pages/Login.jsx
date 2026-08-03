@@ -16,7 +16,7 @@ function Login() {
       setError('')
       const data = await loginUser(username, password)
       setAuthToken(data.access)
-      loginContext(data.access)
+      loginContext(data.access, { username })
       navigate('/')
     } catch (err) {
       setError(err.response?.data?.detail || 'Login failed')
